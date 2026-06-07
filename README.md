@@ -1,18 +1,18 @@
 # SpaceGuard Climate
 
-Sistema inteligente de alerta climático com dados espaciais e meteorológicos, desenvolvido para apoiar prevenção de enchentes, deslizamentos, tempestades, ondas de calor e seca.
+Plataforma de monitoramento climático com dados espaciais e meteorológicos, desenvolvida para apoiar a prevenção de enchentes, deslizamentos, tempestades, ondas de calor e seca.
 
 ## 1. Nome do projeto
 
-**SpaceGuard Climate — Sistema Inteligente de Alerta Climático com Dados Espaciais**
+**SpaceGuard Climate - Plataforma de Monitoramento Climático com Dados Espaciais**
 
 ## 2. Descrição
 
-Aplicação web construída com Next.js para consultar dados climáticos reais, calcular um índice de risco de desastres naturais e apresentar visualizações claras com gráficos, mapa e recomendações automáticas em português.
+Aplicação web construída com Next.js para consultar dados climáticos reais, calcular um índice de risco para desastres naturais e apresentar visualizações claras com gráficos, mapa e orientações preventivas em português.
 
 ## 3. Problema abordado
 
-Eventos climáticos extremos, como enchentes, deslizamentos e ondas de calor, afetam milhares de pessoas todos os anos. Muitas comunidades não têm acesso fácil a dados técnicos de previsão climática. O problema que nosso projeto busca resolver é transformar dados espaciais e meteorológicos em informações simples, visuais e úteis para prevenção.
+Eventos climáticos extremos, como enchentes, deslizamentos e ondas de calor, afetam milhares de pessoas todos os anos. Muitas comunidades não têm acesso fácil a dados técnicos de previsão climática. O projeto busca transformar dados espaciais e meteorológicos em informações simples, visuais e úteis para prevenção.
 
 ## 4. Solução proposta
 
@@ -22,15 +22,15 @@ O SpaceGuard Climate permite pesquisar uma cidade ou informar coordenadas geogr�
 - Consultar dados meteorológicos da Open-Meteo.
 - Complementar a análise com histórico recente da NASA POWER.
 - Calcular um índice geral de risco entre 0 e 100.
-- Exibir recomendações preventivas para tomada de decisão.
-- Salvar o histórico localmente com estrutura pronta para futura migração para PostgreSQL.
+- Exibir orientações preventivas para apoio à decisão.
+- Manter histórico de consultas com estrutura pronta para futura integração com PostgreSQL.
 
 ## 5. Tecnologias utilizadas
 
 - Next.js 16 com App Router
 - TypeScript
 - Tailwind CSS
-- Componentes no estilo shadcn/ui
+- Componentes reutilizáveis inspirados em shadcn/ui
 - React Hook Form
 - Zod
 - Recharts
@@ -54,9 +54,9 @@ Abra `http://localhost:3000`.
 
 ## 8. Prints sugeridos
 
-- Landing page com apresentação do projeto.
+- Página inicial com apresentação do projeto.
 - Dashboard preenchido após uma busca por cidade.
-- Cards de métricas e badge de alerta.
+- Cards de métricas e indicador de alerta.
 - Gráficos de temperatura, chuva e vento.
 - Radar de risco e mapa com marcador.
 - Página Sobre com justificativa e impacto social.
@@ -86,7 +86,7 @@ O impacto esperado é apoiar a prevenção de desastres, facilitar a leitura de 
 
 - Integrar histórico e usuários com PostgreSQL.
 - Criar autenticação e perfis de acesso.
-- Adicionar alertas oficiais e notificações automáticas.
+- Adicionar alertas oficiais e notificações de monitoramento.
 - Incluir sensores IoT e dados de defesa civil.
 - Evoluir o modelo heurístico para um motor analítico mais robusto.
 
@@ -94,31 +94,31 @@ O impacto esperado é apoiar a prevenção de desastres, facilitar a leitura de 
 
 - Preencher com os nomes do grupo.
 
-## 13. Link para vídeo de demonstração
+## 13. Link para vídeo de apresentação
 
 - Inserir link do vídeo aqui.
 
 ## Roteiro sugerido para apresentação
 
-### 0:00 – 0:40 — Problema
+### 0:00 - 0:40 - Problema
 
-“Eventos climáticos extremos, como enchentes, deslizamentos e ondas de calor, afetam milhares de pessoas todos os anos. Muitas comunidades não têm acesso fácil a dados técnicos de previsão climática. O problema que nosso projeto busca resolver é transformar dados espaciais e meteorológicos em informações simples, visuais e úteis para prevenção.”
+"Eventos climáticos extremos, como enchentes, deslizamentos e ondas de calor, afetam milhares de pessoas todos os anos. Muitas comunidades não têm acesso fácil a dados técnicos de previsão climática. O problema que nosso projeto busca resolver é transformar dados espaciais e meteorológicos em informações simples, visuais e úteis para prevenção."
 
-### 0:40 – 1:20 — Solução
+### 0:40 - 1:20 - Solução
 
-“O SpaceGuard Climate é um sistema web que analisa uma localização informada pelo usuário e calcula o nível de risco climático. A plataforma usa dados da Open-Meteo e NASA POWER, que fornecem informações meteorológicas e espaciais, para gerar alertas e recomendações automáticas.”
+"O SpaceGuard Climate é uma plataforma web que analisa uma localização informada pelo usuário e calcula o nível de risco climático. A aplicação usa dados da Open-Meteo e NASA POWER para gerar indicadores claros, visualizações e orientações preventivas."
 
-### 1:20 – 2:20 — Tecnologias
+### 1:20 - 2:20 - Tecnologias
 
-“O projeto foi desenvolvido com Next.js, TypeScript, Tailwind CSS, componentes no estilo shadcn/ui, Recharts e Leaflet. A Open-Meteo é usada para previsão horária de temperatura, chuva, umidade e vento. A NASA POWER é usada como fonte complementar de dados meteorológicos globais baseados em observações e modelos espaciais.”
+"O projeto foi desenvolvido com Next.js, TypeScript, Tailwind CSS, Recharts e Leaflet. A Open-Meteo é usada para previsão horária de temperatura, chuva, umidade e vento. A NASA POWER atua como fonte complementar de dados meteorológicos globais baseados em observações e modelos espaciais."
 
-### 2:20 – 3:20 — Demonstração
+### 2:20 - 3:20 - Demonstração
 
-“Agora vamos demonstrar o protótipo. Ao digitar uma cidade, o sistema busca as coordenadas, consulta as APIs climáticas e gera um painel com temperatura, chuva, vento, umidade e nível de alerta. Também são exibidos gráficos, mapa da região e recomendações preventivas.”
+"Agora vamos demonstrar a plataforma. Ao digitar uma cidade, o sistema busca as coordenadas, consulta as APIs climáticas e gera um painel com temperatura, chuva, vento, umidade e nível de alerta. Também são exibidos gráficos, mapa da região e orientações preventivas."
 
-### 3:20 – 4:00 — Impacto
+### 3:20 - 4:00 - Impacto
 
-“O impacto esperado é apoiar a prevenção de desastres, facilitar a leitura de dados climáticos e ajudar cidadãos, escolas, comunidades e gestores públicos a tomarem decisões mais rápidas. Em versões futuras, o sistema pode integrar alertas oficiais, sensores IoT e notificações automáticas.”
+"O impacto esperado é apoiar a prevenção de desastres, facilitar a leitura de dados climáticos e ajudar cidadãos, escolas, comunidades e gestores públicos a tomarem decisões mais rápidas. Em versões futuras, o sistema poderá integrar alertas oficiais, sensores IoT e novas fontes de monitoramento."
 
 ## Estrutura do projeto
 
@@ -141,15 +141,13 @@ spaceguard-climate/
 
 ## Preparação para PostgreSQL
 
-Mesmo usando `localStorage` nesta primeira entrega, a base já foi preparada para integração com PostgreSQL:
+A base já foi preparada para integração futura com PostgreSQL:
 
 - Variáveis em `.env.example` com `DATABASE_URL`.
 - Interface de repositório em [`lib/repositories/analysisRepository.ts`](./lib/repositories/analysisRepository.ts).
 - Script inicial de tabela em [`lib/repositories/schema.sql`](./lib/repositories/schema.sql).
 
-Quando quiser ativar o banco, a próxima etapa é implementar os métodos de `PostgresAnalysisRepository` com o driver de sua preferência, como `pg` ou Prisma.
-
 ## Observações importantes
 
-- Se uma API externa falhar, a rota `/api/analyze` usa dados simulados de contingência e informa isso na interface.
+- Se uma API externa falhar, a rota `/api/analyze` mantém a visualização disponível com dados de referência temporários.
 - O projeto foi estruturado para deploy simples na Vercel.

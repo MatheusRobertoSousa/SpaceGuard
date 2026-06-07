@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import Link from "next/link";
 
-import "./globals.css";
 import { PageTransition } from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
+import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -18,7 +18,7 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: "SpaceGuard Climate",
-  description: "Sistema inteligente de alerta climático com dados espaciais e meteorológicos.",
+  description: "Plataforma de monitoramento climático com dados espaciais e meteorológicos.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -27,13 +27,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans`}>
         <div className="mx-auto min-h-screen max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <header className="mb-10 flex flex-col gap-4 rounded-[2rem] border border-white/10 bg-white/5 px-6 py-4 backdrop-blur-xl md:flex-row md:items-center md:justify-between">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-3">
-                <span className="font-display text-lg font-bold text-cyan-200">SG</span>
-              </div>
+            <Link href="/" className="flex items-center">
               <div>
                 <p className="font-display text-xl text-white">SpaceGuard Climate</p>
-                <p className="text-sm text-slate-400">Alerta climático com dados espaciais</p>
+                <p className="text-sm text-slate-400">Monitoramento climático com dados espaciais</p>
               </div>
             </Link>
             <nav className="flex flex-wrap items-center gap-3 text-sm text-slate-300">

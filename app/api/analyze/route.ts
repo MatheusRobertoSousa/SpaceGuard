@@ -98,8 +98,8 @@ export async function GET(request: Request) {
         ...fallback,
         error:
           error instanceof Error
-            ? `${error.message} Exibindo dados simulados de contingência.`
-            : "Falha inesperada. Exibindo dados simulados de contingência.",
+            ? `${error.message} Exibindo dados de referência temporários para manter a visualização disponível.`
+            : "Falha inesperada. Exibindo dados de referência temporários para manter a visualização disponível.",
       },
       { status: 200 },
     );

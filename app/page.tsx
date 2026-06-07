@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { CloudLightning, Flame, MapPinned, Satellite, ShieldAlert, Waves } from "lucide-react";
 
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 const riskCards = [
   {
@@ -41,14 +41,14 @@ export default function HomePage() {
         </div>
         <div className="max-w-3xl">
           <p className="mb-4 inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-cyan-100">
-            Sistema Inteligente de Alerta Climático
+            Plataforma de Monitoramento Climático
           </p>
           <h1 className="font-display text-5xl leading-tight text-white sm:text-6xl">
-            SpaceGuard Climate transforma dados espaciais em alertas compreensíveis.
+            SpaceGuard Climate transforma dados espaciais em informação estratégica.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200">
-            A plataforma cruza previsão horária, histórico meteorológico e geolocalização para apoiar prevenção de
-            enchentes, tempestades, deslizamentos, ondas de calor e seca com uma leitura simples e acionável.
+            A plataforma cruza previsão horária, histórico meteorológico e geolocalização para apoiar a prevenção de
+            enchentes, tempestades, deslizamentos, ondas de calor e seca com leitura clara e foco em tomada de decisão.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link href="/dashboard">
@@ -69,14 +69,14 @@ export default function HomePage() {
           <h2 className="mt-4 font-display text-3xl text-white">Eventos extremos exigem leitura rápida e acessível.</h2>
           <p className="mt-4 text-base leading-7 text-slate-300">
             Muitas comunidades, escolas e gestores públicos não têm acesso fácil a painéis meteorológicos técnicos. Em
-            cenários críticos, essa barreira atrasa decisões e aumenta exposição a danos humanos, sociais e ambientais.
+            cenários críticos, essa barreira atrasa decisões e amplia a exposição a danos humanos, sociais e ambientais.
           </p>
         </Card>
         <Card>
           <p className="text-sm uppercase tracking-[0.24em] text-violet-200">Solução</p>
-          <h2 className="mt-4 font-display text-3xl text-white">Dados espaciais convertidos em risco prático.</h2>
+          <h2 className="mt-4 font-display text-3xl text-white">Dados espaciais convertidos em leitura operacional.</h2>
           <p className="mt-4 text-base leading-7 text-slate-300">
-            O SpaceGuard Climate consulta APIs públicas, calcula um índice geral de risco e apresenta recomendações em
+            O SpaceGuard Climate consulta bases públicas, calcula um índice geral de risco e apresenta orientações em
             português com gráficos, mapa interativo e histórico de análises.
           </p>
         </Card>

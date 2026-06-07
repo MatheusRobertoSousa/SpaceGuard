@@ -15,7 +15,7 @@ const sections = [
   },
   {
     title: "Tecnologias utilizadas",
-    text: "Next.js, TypeScript, Tailwind CSS, componentes inspirados em shadcn/ui, React Hook Form, Zod, Recharts, React Leaflet, Open-Meteo e NASA POWER compõem a base do protótipo.",
+    text: "Next.js, TypeScript, Tailwind CSS, React Hook Form, Zod, Recharts, React Leaflet, Open-Meteo e NASA POWER compõem a base técnica da aplicação.",
   },
   {
     title: "Impacto social esperado",
@@ -23,11 +23,11 @@ const sections = [
   },
   {
     title: "Limitações atuais",
-    text: "Esta versão depende de APIs públicas externas e usa histórico em localStorage. O cálculo é heurístico e serve como apoio visual, não como substituto de alertas oficiais.",
+    text: "Esta versão depende de APIs públicas externas e utiliza um modelo de avaliação baseado em regras para consolidar os indicadores apresentados. O painel complementa a leitura técnica, mas não substitui alertas oficiais.",
   },
   {
     title: "Próximos passos",
-    text: "Os próximos ciclos podem incluir integração oficial com PostgreSQL, alertas automáticos, autenticação de usuários, painéis administrativos, sensores IoT e envio de notificações.",
+    text: "Os próximos ciclos incluem integração oficial com PostgreSQL, autenticação de usuários, painéis administrativos, sensores IoT e ampliação das fontes de monitoramento.",
   },
 ];
 
@@ -40,7 +40,7 @@ export default function AboutPage() {
         <p className="mt-5 max-w-4xl text-lg leading-8 text-slate-300">
           Dados obtidos por satélites, modelos meteorológicos e APIs climáticas permitem identificar padrões de chuva
           intensa, calor extremo, ventos fortes e condições favoráveis a desastres naturais. O SpaceGuard Climate
-          propõe uma interface simples e acessível para transformar dados técnicos em alertas compreensíveis.
+          apresenta essas informações em uma interface acessível, organizada e orientada à prevenção.
         </p>
       </section>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { CloudRain, Droplets, Flame, Gauge, Satellite, TriangleAlert, Wind } from "lucide-react";
+import { CloudRain, Droplets, Flame, Gauge, MapPinned, Satellite, TriangleAlert, Wind } from "lucide-react";
 import { useState, useTransition } from "react";
 
 import { AlertBadge } from "@/components/AlertBadge";
@@ -33,7 +33,7 @@ async function fetchAnalysis(params: { city?: string; latitude?: string; longitu
 
   const response = await fetch(`/api/analyze?${search.toString()}`);
   if (!response.ok) {
-    throw new Error("Falha ao consultar a análise climática.");
+    throw new Error("Não foi possível concluir a análise climática.");
   }
 
   return (await response.json()) as AnalyzeResponse;
@@ -74,7 +74,7 @@ export function DashboardClient() {
           longitude: result.location.longitude,
         });
       } catch (error) {
-        setErrorMessage(error instanceof Error ? error.message : "Não foi possível realizar a análise.");
+        setErrorMessage(error instanceof Error ? error.message : "Não foi possível realizar a consulta no momento.");
       }
     });
   };
@@ -88,7 +88,7 @@ export function DashboardClient() {
   };
 
   const mapLocation = {
-    city: analysis?.location.city ?? "Área de seleção",
+    city: analysis?.location.city ?? "Área selecionada",
     latitude: selectedCoordinates?.latitude ?? analysis?.location.latitude ?? -23.55052,
     longitude: selectedCoordinates?.longitude ?? analysis?.location.longitude ?? -46.63331,
   };
@@ -98,11 +98,11 @@ export function DashboardClient() {
       <section className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="space-y-6">
           <div>
-            <Badge className="border-cyan-400/20 bg-cyan-400/10 text-cyan-200">Painel operacional</Badge>
-            <h1 className="mt-4 font-display text-4xl text-white">Análise espacial e climática em tempo quase real</h1>
+            <Badge className="border-cyan-400/20 bg-cyan-400/10 text-cyan-200">Central de monitoramento</Badge>
+            <h1 className="mt-4 font-display text-4xl text-white">Análise climática e territorial com leitura objetiva</h1>
             <p className="mt-3 max-w-2xl text-slate-300">
-              Pesquise uma cidade ou informe coordenadas para combinar dados da Open-Meteo e NASA POWER em um
-              indicador de risco claro, visual e pronto para ação.
+              Pesquise uma cidade ou informe coordenadas para consultar indicadores meteorológicos, visualizar o
+              comportamento do local e acompanhar o nível de risco de forma clara.
             </p>
           </div>
           <SearchForm
@@ -125,25 +125,25 @@ export function DashboardClient() {
                 <Satellite className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <p className="text-sm text-slate-400">Modo de monitoramento</p>
-                <p className="font-semibold text-white">{analysis?.sourceMode === "fallback" ? "Contingência" : "Operacional"}</p>
+                <p className="text-sm text-slate-400">Status da consulta</p>
+                <p className="font-semibold text-white">{analysis?.sourceMode === "fallback" ? "Base alternativa" : "Base principal"}</p>
               </div>
             </div>
 
             <div className="space-y-4">
               <div className="rounded-3xl border border-white/10 bg-slate-950/45 p-5">
-                <p className="text-sm text-slate-400">Última geração</p>
+                <p className="text-sm text-slate-400">Atualização mais recente</p>
                 <p className="mt-2 text-lg font-semibold text-white">
-                  {analysis ? formatDateTime(analysis.generatedAt) : "Aguardando análise"}
+                  {analysis ? formatDateTime(analysis.generatedAt) : "Nenhuma consulta realizada"}
                 </p>
               </div>
               <div className="rounded-3xl border border-white/10 bg-slate-950/45 p-5">
-                <p className="text-sm text-slate-400">Nível de alerta</p>
+                <p className="text-sm text-slate-400">Nível de risco</p>
                 <div className="mt-3">{analysis ? <AlertBadge level={analysis.risk.level} /> : <AlertBadge level="BAIXO" />}</div>
               </div>
               <p className="text-sm leading-6 text-slate-300">
-                Arquitetura preparada para PostgreSQL via camada de repositório. Nesta versão, o histórico do usuário
-                é salvo com `localStorage` para simplificar a demonstração.
+                O histórico das consultas fica disponível no próprio painel e a estrutura já está preparada para futura
+                integração com banco de dados PostgreSQL.
               </p>
             </div>
           </div>
@@ -153,19 +153,50 @@ export function DashboardClient() {
       <section className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
         <LocationMap location={mapLocation} onLocationSelect={setSelectedCoordinates} />
         <Card>
-          <h2 className="font-display text-2xl text-white">Escolha a localização pelo mapa</h2>
-          <p className="mt-3 text-sm leading-6 text-slate-300">
-            Clique no mapa para preencher latitude e longitude automaticamente no formulário. Isso ajuda quando você
-            quer analisar um ponto específico sem depender do nome da cidade.
-          </p>
+          <div className="flex items-start gap-3">
+            <div className="rounded-3xl border border-white/10 bg-white/10 p-3">
+              <MapPinned className="h-5 w-5 text-cyan-200" />
+            </div>
+            <div>
+              <h2 className="font-display text-2xl text-white">Localização da análise</h2>
+              <p className="mt-3 text-sm leading-6 text-slate-300">
+                Selecione um ponto diretamente no mapa para preencher as coordenadas do formulário e consultar uma área
+                específica com precisão.
+              </p>
+            </div>
+          </div>
+
           <div className="mt-6 rounded-3xl border border-cyan-400/15 bg-cyan-400/8 p-4 text-sm text-cyan-100">
             {selectedCoordinates
-              ? `Ponto selecionado: ${selectedCoordinates.latitude.toFixed(5)}, ${selectedCoordinates.longitude.toFixed(5)}`
-              : "Nenhum ponto selecionado ainda. Clique em qualquer região do mapa para definir as coordenadas."}
+              ? `Coordenadas selecionadas: ${selectedCoordinates.latitude.toFixed(5)}, ${selectedCoordinates.longitude.toFixed(5)}`
+              : "Nenhum ponto selecionado. Clique no mapa para definir a área de interesse."}
           </div>
-          <div className="mt-4 rounded-3xl border border-white/10 bg-slate-950/40 p-4 text-sm text-slate-300">
-            Dica: depois de clicar no mapa, use o botão “Analisar local” para buscar os dados climáticos desse ponto.
-          </div>
+
+          {analysis ? (
+            <>
+              <div className="mt-4 rounded-3xl border border-white/10 bg-slate-950/40 p-4 text-sm text-slate-200">
+                Local analisado: {analysis.location.city} ({analysis.location.latitude.toFixed(2)},{" "}
+                {analysis.location.longitude.toFixed(2)})
+              </div>
+              <div className="mt-6">
+                <h3 className="font-display text-xl text-white">Recomendações operacionais</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-400">
+                  Diretrizes organizadas a partir das condições observadas e da previsão disponível para o local.
+                </p>
+                <div className="mt-4 space-y-3">
+                  {analysis.risk.recommendations.map((recommendation) => (
+                    <div key={recommendation} className="rounded-3xl border border-white/10 bg-slate-950/40 p-4 text-sm text-slate-200">
+                      {recommendation}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="mt-4 rounded-3xl border border-white/10 bg-slate-950/40 p-4 text-sm text-slate-300">
+              Após a consulta, este painel exibirá o local confirmado e as recomendações associadas ao cenário analisado.
+            </div>
+          )}
         </Card>
       </section>
 
@@ -178,43 +209,43 @@ export function DashboardClient() {
               title="Temperatura atual"
               value={analysis.current.temperature}
               unit="°C"
-              description="Leitura atual de temperatura da região monitorada."
+              description="Temperatura observada no momento da atualização."
               icon={Flame}
             />
             <RiskCard
               title="Precipitação"
               value={analysis.current.precipitation}
               unit="mm"
-              description="Chuva registrada no horário atual e projeção nas próximas horas."
+              description="Volume de chuva registrado no horário atual."
               icon={CloudRain}
             />
             <RiskCard
               title="Velocidade do vento"
               value={analysis.current.windSpeed}
               unit="km/h"
-              description="Rajadas mais fortes elevam o risco de tempestades severas."
+              description="Intensidade do vento com impacto potencial sobre instabilidades."
               icon={Wind}
             />
             <RiskCard
               title="Umidade"
               value={analysis.current.humidity}
               unit="%"
-              description="Baixa umidade intensifica desconforto térmico e seca."
+              description="Indicador relevante para conforto térmico e estiagem."
               icon={Droplets}
             />
             <RiskCard
               title="Índice geral"
               value={analysis.risk.overallScore}
               unit="/100"
-              description="Pontuação ponderada a partir de enchente, deslizamento, tempestade, calor e seca."
+              description="Resultado consolidado da avaliação climática e territorial."
               icon={Gauge}
               highlight
             />
             <RiskCard
-              title="Nível de alerta"
+              title="Classificação"
               value={analysis.risk.level === "CRITICO" ? 4 : analysis.risk.level === "ALTO" ? 3 : analysis.risk.level === "MODERADO" ? 2 : 1}
               unit="/4"
-              description={`Classificação atual: ${analysis.risk.level}. Use junto das recomendações preventivas abaixo.`}
+              description={`Faixa atual de monitoramento: ${analysis.risk.level}.`}
               icon={TriangleAlert}
             />
           </section>
@@ -231,27 +262,6 @@ export function DashboardClient() {
             />
             <WeatherChart title="Velocidade do vento" color="#c084fc" data={analysis.hourly} dataKey="windSpeed" unit="km/h" />
             <RiskRadarChart risk={analysis.risk} />
-          </section>
-
-          <section className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
-            <LocationMap location={analysis.location} onLocationSelect={setSelectedCoordinates} />
-            <Card>
-              <h3 className="font-display text-2xl text-white">Recomendações automáticas</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-400">
-                Orientações geradas com base nos fatores climáticos atuais e no histórico recente da NASA POWER.
-              </p>
-              <div className="mt-6 space-y-3">
-                {analysis.risk.recommendations.map((recommendation) => (
-                  <div key={recommendation} className="rounded-3xl border border-white/10 bg-slate-950/40 p-4 text-sm text-slate-200">
-                    {recommendation}
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 rounded-3xl border border-cyan-400/15 bg-cyan-400/8 p-4 text-sm text-cyan-100">
-                Local analisado: {analysis.location.city} ({analysis.location.latitude.toFixed(2)},{" "}
-                {analysis.location.longitude.toFixed(2)})
-              </div>
-            </Card>
           </section>
         </>
       ) : null}
