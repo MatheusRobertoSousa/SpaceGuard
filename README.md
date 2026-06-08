@@ -1,48 +1,45 @@
 # SpaceGuard Climate
 
-Plataforma web para monitoramento climatico com dados meteorologicos e espaciais, voltada a analise preventiva de eventos como enchentes, deslizamentos, tempestades, ondas de calor e seca.
+Plataforma web para monitoramento climatico com dados meteorologicos e espaciais, voltada a analise preventiva de enchentes, deslizamentos, tempestades, ondas de calor e seca.
 
-## Visao geral
+## Acesso online
 
-O projeto consolida dados de previsao e historico meteorologico em um painel unico, com indicadores de risco, graficos, mapa e orientacoes preventivas. A aplicacao foi desenvolvida para transformar informacoes tecnicas em uma leitura mais clara e operacional.
+Deploy em producao: [space-guard.vercel.app](https://space-guard.vercel.app/)
 
-## Principais funcionalidades
+## Resumo
+
+O SpaceGuard Climate centraliza previsoes, historico meteorologico e indicadores de risco em uma interface unica. A aplicacao transforma dados tecnicos em informacoes mais claras para consulta, acompanhamento e apoio a decisoes preventivas.
+
+## Destaques
 
 - Consulta por cidade ou coordenadas geograficas.
-- Obtencao automatica de latitude e longitude via geocoding.
-- Consumo de previsao meteorologica da Open-Meteo.
-- Complemento analitico com historico recente da NASA POWER.
+- Geocoding automatico para obtencao de latitude e longitude.
+- Consumo de dados da Open-Meteo e da NASA POWER.
 - Calculo de indice geral de risco com classificacao por severidade.
-- Exibicao de metricas, graficos, mapa e recomendacoes preventivas.
-- Historico local de consultas com estrutura preparada para futura integracao com PostgreSQL.
+- Exibicao de metricas, graficos, mapa e orientacoes preventivas.
+- Historico local de consultas com base pronta para futura integracao com PostgreSQL.
 
-## Tecnologias utilizadas
+## Stack
 
-- Next.js 16
-- React 19
-- TypeScript
-- Tailwind CSS
-- React Hook Form
-- Zod
-- Recharts
-- Leaflet e React Leaflet
+| Camada | Tecnologias |
+| --- | --- |
+| Frontend | Next.js 16, React 19, TypeScript, Tailwind CSS |
+| Formularios e validacao | React Hook Form, Zod |
+| Visualizacao | Recharts, Leaflet, React Leaflet |
+| Integracoes | Open-Meteo Geocoding API, Open-Meteo Forecast API, NASA POWER API |
 
-## APIs integradas
+## Estrutura do projeto
 
-- Open-Meteo Geocoding API
-- Open-Meteo Forecast API
-- NASA POWER API
+| Diretorio | Responsabilidade |
+| --- | --- |
+| `app/` | Paginas, layout global e rota `api/analyze` |
+| `components/` | Componentes visuais e widgets do dashboard |
+| `lib/api/` | Integracoes com servicos externos |
+| `lib/risk/` | Logica de calculo do indice de risco |
+| `lib/repositories/` | Abstracoes de persistencia e preparacao para PostgreSQL |
+| `types/` | Tipagens compartilhadas da aplicacao |
 
-## Estrutura da aplicacao
-
-- `app/`: paginas, layout global e rota `api/analyze`
-- `components/`: componentes visuais e widgets do dashboard
-- `lib/api/`: integracoes com servicos externos
-- `lib/risk/`: regra de calculo do indice de risco
-- `lib/repositories/`: base para persistencia e futura integracao com PostgreSQL
-- `types/`: contratos de tipos da aplicacao
-
-## Como executar localmente
+## Execucao local
 
 ### Requisitos
 
@@ -65,15 +62,15 @@ DATABASE_URL=postgresql://postgres:postgres@localhost:5432/spaceguard_climate
 POSTGRES_SSL=false
 ```
 
-### Ambiente de desenvolvimento
+### Desenvolvimento
 
 ```bash
 npm run dev
 ```
 
-Aplicacao disponivel em `http://localhost:3000`.
+A aplicacao ficara disponivel em `http://localhost:3000`.
 
-### Build de producao
+### Producao
 
 ```bash
 npm run build
@@ -84,24 +81,24 @@ npm run start
 
 A funcao [`calculateDisasterRisk`](./lib/risk/calculateDisasterRisk.ts) combina dados atuais, previsao das proximas 24 horas e historico recente para estimar risco em cinco frentes:
 
-- enchente
-- deslizamento
-- tempestade
-- calor extremo
-- seca
+- Enchente
+- Deslizamento
+- Tempestade
+- Calor extremo
+- Seca
 
-O resultado e convertido em um indice geral de 0 a 100 e classificado nos niveis `BAIXO`, `MODERADO`, `ALTO` e `CRITICO`.
+O resultado e convertido em um indice geral de `0` a `100` e classificado nos niveis `BAIXO`, `MODERADO`, `ALTO` e `CRITICO`.
 
 ## Persistencia e expansao
 
-O projeto opera atualmente com historico no cliente e possui preparacao para evolucao com PostgreSQL:
+Atualmente, o historico de consultas opera no cliente. O projeto ja possui estrutura preparada para evolucao com PostgreSQL:
 
-- configuracao de ambiente em `.env.example`
-- contrato de repositorio em [`lib/repositories/analysisRepository.ts`](./lib/repositories/analysisRepository.ts)
-- script inicial em [`lib/repositories/schema.sql`](./lib/repositories/schema.sql)
+- Configuracao de ambiente em `.env.example`
+- Contrato de repositorio em [`lib/repositories/analysisRepository.ts`](./lib/repositories/analysisRepository.ts)
+- Script inicial em [`lib/repositories/schema.sql`](./lib/repositories/schema.sql)
 
 ## Observacoes tecnicas
 
-- A rota [`/api/analyze`](./app/api/analyze/route.ts) utiliza dados ao vivo sempre que possivel.
+- A rota [`/api/analyze`](./app/api/analyze/route.ts) prioriza dados ao vivo sempre que possivel.
 - Em caso de indisponibilidade de APIs externas, a aplicacao retorna dados de referencia temporarios para preservar a experiencia de uso.
-- A estrutura do projeto e compativel com deploy em plataformas como Vercel.
+- A estrutura atual e compativel com deploy em plataformas como Vercel.
